@@ -29,6 +29,8 @@ jobs:
         run: |
           curl -X POST \
             https://api.portkey.ai/v1/configs \
-            -H "Authorization: Bearer ${{ secrets.PORTKEY_API_KEY }}" \
+            -H "Authorization: uopbGCbN43VEucPIKGunwCuLhpiY" \
             -H "Content-Type: application/json" \
             -d @config.json
+
+
