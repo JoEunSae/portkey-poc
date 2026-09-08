@@ -1,4 +1,4 @@
-name: Validate Gateway Config
+name: Deploy Portkey Config
 
 on:
   push:
@@ -6,16 +6,29 @@ on:
       - main
 
 jobs:
-  validate:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Display Config
-        run: |
-          cat gateway-config.yaml
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-      - name: Validation Passed
+      - name: Install dependencies
         run: |
-          echo "Gateway Config Validation Passed"
+          pip install pyyaml
+
+      - name: Convert YAML to JSON
+        run: |
+          python convert.py
+
+      - name: Create Config
+        run: |
+          curl -X POST \
+            https://api.portkey.ai/v1/configs \
+            -H "Authorization: Bearer ${{ secrets.PORTKEY_API_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d @config.json
