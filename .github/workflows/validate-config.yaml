@@ -29,7 +29,7 @@ jobs:
         run: |
           curl -X POST \
             https://api.portkey.ai/v1/configs \
-            -H "x-portkey-api-key: uopbGCbN43VEucPIKGunwCuLhpiY"
+            -H "x-portkey-api-key: uopbGCbN43VEucPIKGunwCuLhpiY" \
             -H "Content-Type: application/json" \
             -d @config.json
 
