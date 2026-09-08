@@ -4,7 +4,7 @@ gateway:
     maxAge: 3600
 
   retry:
-    attempts: 3
+    attempts: 4
     delay: 1000
     onStatusCodes:
       - 429
