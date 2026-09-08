@@ -1,0 +1,26 @@
+name: Validate Gateway Config
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show Config
+        run: |
+          cat gateway-config.yaml
+
+      - name: Validate YAML
+        run: |
+          python -c "
+import yaml
+with open('gateway-config.yaml') as f:
+    yaml.safe_load(f)
+print('YAML validation passed')
+"
