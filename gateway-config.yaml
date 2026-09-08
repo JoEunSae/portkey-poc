@@ -1,0 +1,23 @@
+gateway:
+  cache:
+    mode: simple
+    maxAge: 3600
+
+  retry:
+    attempts: 3
+    delay: 1000
+    onStatusCodes:
+      - 429
+      - 500
+      - 502
+      - 503
+      - 504
+
+  routing:
+    primary: azure-openai
+    fallback:
+      - gemini
+
+  metadata:
+    division: Infra
+    project: PORTKEY-RAG-POC
